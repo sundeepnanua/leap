@@ -1,0 +1,4 @@
+<antlib>
+    <typedef name="helloworld" classname="org.leap.HelloWorld"/>
+    <typedef name="gensfields" classname="org.leap.SFieldsTask"/>
+</antlib>

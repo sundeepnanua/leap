@@ -1,0 +1,8 @@
+build.properties
+.settings
+config/
+lib/
+target/
+repo/
+.env
+*.launch
