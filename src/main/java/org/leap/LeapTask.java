@@ -9,7 +9,6 @@ import com.sforce.ws.ConnectionException;
 public class LeapTask extends Task {
 	
 	public String rootSourceFolder(){
-		//return getLocation() + "/src/";
 		String[] path = this.getLocation().getFileName().split("/");
 		String result = "";
 		for(String p : path){
@@ -20,7 +19,6 @@ public class LeapTask extends Task {
 		}
 		result += "src/";
 		return result;
-		//return this.getLocation().getFileName();
 	}
 	
 	String username;
