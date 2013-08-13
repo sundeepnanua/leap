@@ -62,9 +62,9 @@ From the command line of any Salesforce development environment:
 <h2>Example build.xml</h2>
 
 <pre>
-<project name="Project Name" default="test" basedir="." xmlns:sf="antlib:com.salesforce" xmlns:leap="antlib:org.leap">
-	<target name="leapTaskName">
-		<leap:leapTaskName username="${sf.dev.username}" password="${sf.dev.password}" serverurl="${sf.dev.url}" />
-	</target>
+&lt;project name="Project Name" default="test" basedir="." xmlns:sf="antlib:com.salesforce" xmlns:leap="antlib:org.leap"&gt;
+	&lt;target name="leapTaskName"&gt;
+		&lt;leap:leapTaskName username="${sf.dev.username}" password="${sf.dev.password}" serverurl="${sf.dev.url}" /&gt;
+	&lt;/target&gt;
 </project>
 </pre>
