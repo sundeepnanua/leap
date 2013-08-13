@@ -66,5 +66,5 @@ From the command line of any Salesforce development environment:
 	&lt;target name="leapTaskName"&gt;
 		&lt;leap:leapTaskName username="${sf.dev.username}" password="${sf.dev.password}" serverurl="${sf.dev.url}" /&gt;
 	&lt;/target&gt;
-</project>
+&lt;/project&gt;
 </pre>
