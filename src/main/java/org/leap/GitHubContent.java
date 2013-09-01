@@ -3,8 +3,10 @@ package org.leap;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import org.apache.commons.codec.binary.Base64;
 
 import com.google.gson.Gson;
 
@@ -58,5 +60,17 @@ public class GitHubContent {
 			Assert.fail(e.getMessage());
 		}
 		return contentObject;
+	}
+	
+	public String decodedContent(){
+		byte[] decoded = null;
+		String decodedResult = "";
+		try {
+			decoded = Base64.decodeBase64(this.content.getBytes("UTF-8"));
+			decodedResult = new String(decoded, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return decodedResult;
 	}
 }

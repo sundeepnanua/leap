@@ -3,6 +3,7 @@ package org.leap;
 import java.net.URL;
 
 import com.sforce.soap.metadata.MetadataConnection;
+import com.sforce.soap.partner.GetServerTimestampResult;
 import com.sforce.soap.partner.LoginResult;
 import com.sforce.soap.partner.PartnerConnection;
 import com.sforce.ws.ConnectionException;
@@ -25,7 +26,7 @@ public class SalesforceConnection {
 		this.SFDC_PASSWORD 	= password;
 		this.SFDC_TOKEN		= token;
 		// TODO: strip last '/' char from serverUrl
-		this.SFDC_URL		= serverUrl + "/services/Soap/u/27.0";
+		this.SFDC_URL		= serverUrl + "/services/Soap/u/28.0";
 				
 		this.loginResult = this.loginToSalesforce();
 		this.partnerConnection = createPartnerConnection(this.loginResult);
@@ -77,5 +78,19 @@ public class SalesforceConnection {
 	
 	public PartnerConnection getPartnerConnection(){
 		return this.partnerConnection;
+	}
+	
+	public boolean isValid(){
+		try {
+			GetServerTimestampResult result = this.getPartnerConnection().getServerTimestamp();
+			if(result != null){
+				return true;
+			} else {
+				return false;
+			}
+		} catch (ConnectionException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

@@ -1,4 +1,4 @@
-<project name="Placements for Salesforce Ant tasks" default="test" basedir="." xmlns:sf="antlib:com.salesforce" xmlns:leap="antlib:org.leap">
+<project name="Leap for Salesforce example build.xml file" default="test" basedir="." xmlns:sf="antlib:com.salesforce" xmlns:leap="antlib:org.leap">
 
     <property file="build.properties"/>
     <property environment="env"/>
@@ -16,31 +16,22 @@
         </sequential>
     </macrodef>
 
-    <target name="hello" description="Use the Task">
-        <taskdef name="helloworld" classname="org.leap.HelloWorld" classpath="ant-leap.jar"/>
-        <helloworld message="Hello World"/>
-    </target>
-
-    <target name="useleap">
-      <leap:helloworld message="Hello World" username="${sf.dev.username}" password="${sf.dev.password}" serverurl="${sf.dev.url}" namespace="IO__" />
-    </target>
-
     <target name="genfields">
-      <leap:gensfields username="${sf.dev.username}" password="${sf.dev.password}" serverurl="${sf.dev.url}" namespace="IO__" />
+      <leap:gensfields username="${sf.dev.username}" password="${sf.dev.password}" token="${sf.dev.token}" serverurl="${sf.dev.url}" limit="10" />
     </target>
 
     <target name="pushdev">
-      <sf:deploy username="${sf.dev.username}" password="${sf.dev.password}" serverurl="${sf.dev.url}" deployRoot="src/">
+      <sf:deploy username="${sf.dev.username}" password="${sf.dev.password}" token="${sf.dev.token}" serverurl="${sf.dev.url}" deployRoot="src/">
       </sf:deploy>
     </target>
 
     <target name="pushtest">
-      <sf:deploy username="${sf.tes.username}" password="${sf.test.password}" serverurl="${sf.test.url}" deployRoot="src/">
+      <sf:deploy username="${sf.tes.username}" password="${sf.test.password}" token="${sf.dev.token}" serverurl="${sf.test.url}" deployRoot="src/">
       </sf:deploy>
     </target>
 
     <target name="pushprod">
-      <sf:deploy username="${sf.prod.username}" password="${sf.prod.password}" serverurl="${sf.prod.url}" deployRoot="src/">
+      <sf:deploy username="${sf.prod.username}" password="${sf.prod.password}" token="${sf.dev.token}" serverurl="${sf.prod.url}" deployRoot="src/">
       </sf:deploy>
     </target>
 

@@ -4,7 +4,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.leap.GitHubContent;
 
-public class TestGitHubContent {
+public class GitHubContentTests {
 
 	@Test
 	public void fetchContentTests(){
@@ -17,5 +17,9 @@ public class TestGitHubContent {
         Assert.assertEquals(gitObj.type, "file");
         Assert.assertEquals(gitObj.encoding, "base64");
         Assert.assertEquals(gitObj._links.html, "https://github.com/cubiccompass/leap/blob/master/src/main/resources/org/leap/antlib.xml");
+        
+        Assert.assertNotNull(gitObj.decodedContent());
+        Assert.assertTrue(gitObj.decodedContent().startsWith("<antlib>"));
+        Assert.assertTrue(gitObj.decodedContent().endsWith("</antlib>\n"));
 	}
 }

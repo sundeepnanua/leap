@@ -8,7 +8,22 @@ import com.sforce.ws.ConnectionException;
 
 public class LeapTask extends Task {
 	
-	public String rootSourceFolder(){
+	String projectRootFolder = null;
+	public void setProjectRoot(String root){
+		this.projectRootFolder = root;
+		if(!this.projectRootFolder.endsWith("/")){
+			this.projectRootFolder += "/";
+		}
+	}
+	
+	public String getProjectRoot(){
+		if(projectRootFolder == null){
+			projectRootFolder = rootSourceFolder();
+		}
+		return this.projectRootFolder;
+	}
+	
+	protected String rootSourceFolder(){
 		String[] path = this.getLocation().getFileName().split("/");
 		String result = "";
 		for(String p : path){
@@ -41,7 +56,7 @@ public class LeapTask extends Task {
     	serverurl = url;
     }
     
-    String api = "27.0";
+    String api = "28.0";
     public void setApi(String apiVersion){
     	api = apiVersion;
     }
@@ -51,13 +66,36 @@ public class LeapTask extends Task {
     	namespace = ns;
     }
     
+    Integer limit = -1;
+    public void setLimit(String l){
+    	limit = Integer.valueOf(l);
+    }
+    
     private SalesforceConnection m_salesforceConnection = null;
-    public SalesforceConnection salesforceConnection() throws ConnectionException{
+    public SalesforceConnection salesforceConnection(){
     	if(m_salesforceConnection == null){
-    		m_salesforceConnection = new SalesforceConnection(username, password, "", serverurl);
+    		try {
+				m_salesforceConnection = new SalesforceConnection(username, password, token, serverurl);
+			} catch (ConnectionException e) {
+				e.printStackTrace();
+			}
     	}
     	return m_salesforceConnection;
-    	//throw new BuildException("Missing required field.");
+    }
+    
+    public void validateConnectionParams(){
+    	if(this.username == null){
+    		throw new BuildException("Missing Salesforce username param");
+    	}
+    	if(this.password == null){
+    		throw new BuildException("Missing Salesforce password param");
+    	}
+    	if(this.token == null){
+    		throw new BuildException("Missing Salesforce token param");
+    	}
+    	if(this.serverurl == null){
+    		throw new BuildException("Missing Salesforce serverurl param");
+    	}
     }
     
     private DescribeGlobalSObjectResult[] m_sobjectResults;
