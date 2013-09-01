@@ -19,40 +19,28 @@
 		<artifactId>ant</artifactId>
 		<version>1.9.2</version>
 	</dependency>
-	
-	<!-- Amazon Web Services -->
-	<dependency>
-		<groupId>com.amazonaws</groupId>
-		<artifactId>aws-java-sdk</artifactId>
-		<version>1.4.3</version>
-	</dependency>            
-	
+		
 	<!-- Salesforce -->
 	<dependency>
 		<groupId>com.force.api</groupId>
 		<artifactId>force-wsc</artifactId>
-		<version>27.0.0</version>
+		<version>28.0.0</version>
 	</dependency>
 	<dependency>
 		<groupId>com.force.api</groupId>
 		<artifactId>force-partner-api</artifactId>
-		<version>27.0.0</version>
+		<version>28.0.0</version>
 	</dependency>
 	<dependency>
 		<groupId>com.force.api</groupId>
 		<artifactId>force-metadata-api</artifactId>
-		<version>27.0.0</version>
+		<version>28.0.0</version>
 	</dependency>
 	
 	<dependency>
 		<groupId>joda-time</groupId>
 		<artifactId>joda-time</artifactId>
 		<version>2.1</version>
-	</dependency>
-	<dependency>
-		<groupId>org.joda</groupId>
-		<artifactId>joda-money</artifactId>
-		<version>0.8</version>
 	</dependency>
 			
     <!-- Configuration to use log4j for logging -->
@@ -85,11 +73,6 @@
 		<artifactId>httpunit</artifactId>
 		<version>1.7</version>
 	</dependency>
-	<dependency>
-		<groupId>junitperf</groupId>
-		<artifactId>junitperf</artifactId>
-		<version>1.8</version>
-	</dependency>	
   </dependencies>
   <build>
   	<!-- Note: Output of build should be deployed to /usr/share/ant/lib on a Mac -->

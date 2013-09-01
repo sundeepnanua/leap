@@ -9,9 +9,7 @@
 </ul>
 
 <h2>Overview</h2>
-Many Force.com MVPs and Developers have written excellent articles, books, and blog posts on the topic of Apex; which Developers worldwide are able to cut-n-paste into their projects.
-
-Leap is an attempt to package Apex best practices and patterns into a template library for use in code generation directly from any Ant command line environment.
+Leap is a Java Ant library that integrates with the Salesforce migration toolkit to help Developers with common tasks, such as generating trigger handlers and wrapper classes. The leap template library is an open source catalog of Apex best practices and examples, compiled from the Salesforce Development community, that encourages coding styles that work well on the Salesforce platform.
 
 <h2>Usage</h2>
 From the command line of any Salesforce development environment:
