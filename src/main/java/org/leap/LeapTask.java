@@ -66,11 +66,6 @@ public class LeapTask extends Task {
     	namespace = ns;
     }
     
-    Integer limit = -1;
-    public void setLimit(String l){
-    	limit = Integer.valueOf(l);
-    }
-    
     private SalesforceConnection m_salesforceConnection = null;
     public SalesforceConnection salesforceConnection(){
     	if(m_salesforceConnection == null){

@@ -11,7 +11,7 @@ public class LeapTemplateTests {
 			"}";
 	
 	private String LEAPLET_TEMPLATE = "public with sharing class TestClass{" +
-			"	/*{\"name\":\"testLeaplet\"}" +
+			"	/*{\"name\":\"testLeaplet\", \"version\":\"1\"}" +
 			"	private String {field_name};" +
 			"	*/" +
 			"	public TestClass(){}" +
@@ -19,10 +19,10 @@ public class LeapTemplateTests {
 			"}";
 	
 	private String MULTI_LEAPLET_TEMPLATE = "public with sharing class TestClass{" +
-			"	/*{\"name\":\"testLeaplet\"}" +
+			"	/*{\"name\":\"testLeaplet\", \"version\":\"1\"}" +
 			"	private String {field_name};" +
 			"	*/" +
-			"	/*{\"name\":\"multiLeaplet\"}" +
+			"	/*{\"name\":\"multiLeaplet\", \"version\":\"1\"}" +
 			"	private String {field_name};" +
 			"	*/" +
 			"	public TestClass(){}" +
@@ -38,11 +38,14 @@ public class LeapTemplateTests {
 		Assert.assertEquals(1, template.leapletList.size());
 		Assert.assertEquals("testLeaplet", template.leapletList.get(0).name);
 		Assert.assertEquals("	private String {field_name};", template.leapletList.get(0).content);
+		Assert.assertEquals("1", template.leapletList.get(0).version);
 		
 		template = new LeapTemplate().withContent(MULTI_LEAPLET_TEMPLATE);
 		Assert.assertEquals(2, template.leapletList.size());
 		Assert.assertEquals("testLeaplet", template.leapletList.get(0).name);
+		Assert.assertEquals("1", template.leapletList.get(0).version);
 		Assert.assertEquals("multiLeaplet", template.leapletList.get(1).name);
+		Assert.assertEquals("1", template.leapletList.get(1).version);
 		Assert.assertEquals("	private String {field_name};", template.leapletList.get(1).content);
 	}
 }

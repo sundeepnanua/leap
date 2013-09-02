@@ -1,5 +1,6 @@
 package tests;
 
+import java.io.File;
 import java.net.URL;
 
 import junit.framework.Assert;
@@ -19,18 +20,19 @@ public class SFieldsTaskTests {
 		task.setServerurl(System.getenv("SALESFORCE_SERVER_URL"));
 		task.setProjectRoot( System.getenv("PROJECT_ROOT"));
 		task.setLimit("10");
+		
 		Assert.assertTrue(task.salesforceConnection().isValid());
-		
-		//Assert.assertNotNull(task.getLocation());
-		//System.out.println("task.getLocation(): " + task.getLocation().toString() );
-		
-		//URL location = Test.class.getProtectionDomain().getCodeSource().getLocation();
-        //System.out.println(location.getFile());
-		System.out.println("rootSourceFolder: " + task.getProjectRoot() );
+		Assert.assertNotNull(task.getLeapTemplate());
+		Assert.assertNotNull(task.getLeapTemplate().content);
+		Assert.assertTrue(task.getLeapTemplate().hasLeaplets());
+		Assert.assertNotNull(task.getSFieldRowTemplate());
 		
 		task.execute();
 		
-		// Get file located on relative path
-		Assert.assertTrue(true); // Path to file is valid
+		File file = new File(task.getProjectRoot() + "classes/SObjectFields.cls");
+		Assert.assertTrue(file.exists());
+		
+		file = new File(task.getProjectRoot() + "classes/SObjectFields.cls-meta.xml");
+		Assert.assertTrue(file.exists());
 	}
 }

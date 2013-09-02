@@ -20,6 +20,6 @@ public class GitHubContentTests {
         
         Assert.assertNotNull(gitObj.decodedContent());
         Assert.assertTrue(gitObj.decodedContent().startsWith("<antlib>"));
-        Assert.assertTrue(gitObj.decodedContent().endsWith("</antlib>\n"));
+        Assert.assertTrue(gitObj.decodedContent().endsWith("</antlib>"));
 	}
 }

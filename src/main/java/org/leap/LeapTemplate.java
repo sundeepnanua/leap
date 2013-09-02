@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 
 public class LeapTemplate {
 	public List<Leaplet> leapletList = new ArrayList<Leaplet>();
-	private String content;
+	public String content;
 	
 	public LeapTemplate(){}
 	
@@ -16,6 +16,19 @@ public class LeapTemplate {
 		this.content = c;
 		this.parseLeaplets();
 		return this;
+	}
+	
+	public boolean hasLeaplets(){
+		return this.leapletList.size() > 0;
+	}
+	
+	public Leaplet getLeapletByName(String name){
+		for(Leaplet l : this.leapletList){
+			if(l.name.equals(name)){
+				return l;
+			}
+		}
+		return null;
 	}
 	
 	private LeapTemplate parseLeaplets(){

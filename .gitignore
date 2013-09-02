@@ -1,8 +1,10 @@
-build.properties
+build.properties.dev
 .settings
 config/
 lib/
 target/
 repo/
+src/classes/
+src/test/classes/
 .env
 *.launch
