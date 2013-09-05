@@ -25,7 +25,6 @@ public class SFieldsTaskTests {
 		Assert.assertNotNull(task.getLeapTemplate());
 		Assert.assertNotNull(task.getLeapTemplate().content);
 		Assert.assertTrue(task.getLeapTemplate().hasLeaplets());
-		Assert.assertNotNull(task.getSFieldRowTemplate());
 		
 		task.execute();
 		

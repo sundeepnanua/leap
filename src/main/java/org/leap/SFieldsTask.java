@@ -14,6 +14,7 @@ import com.sforce.ws.ConnectionException;
 public class SFieldsTask extends LeapTask {
 	private String class_template_url = "https://api.github.com/repos/cubiccompass/leap/contents/templates/src/classes/SObjectFields.cls";
 	private String meta_template_url = "https://api.github.com/repos/cubiccompass/leap/contents/templates/src/classes/SObjectFields.cls-meta.xml";
+	private String ROW_TEMPLATE	= "public static final String {{object_name}} = '{{field_list}}';";
 	private String MERGE_TEMPLATE_TAG = "{placeholder}";
     
     Integer limit = -1;
@@ -62,15 +63,7 @@ public class SFieldsTask extends LeapTask {
     	}
     	return m_leapTemplate;
     }
-    
-    private Leaplet m_fieldRowTemplate = null;
-    public Leaplet getSFieldRowTemplate(){
-    	if(m_fieldRowTemplate == null && this.getLeapTemplate().hasLeaplets()){
-    		m_fieldRowTemplate = this.getLeapTemplate().getLeapletByName("sfield");
-    	}
-    	return m_fieldRowTemplate;
-    }
-    
+        
     private GitHubContent m_metaTemplate = null;
     protected GitHubContent getMetaTemplate(){
     	if(m_metaTemplate == null){
@@ -95,8 +88,8 @@ public class SFieldsTask extends LeapTask {
 			if(this.limit != -1 && counter++ > this.limit){ break;}
 			
 			String object_name = "ALL_" + this.getObjectName(this.sObjects()[i]) + "_FIELDS";
-			String sfield = this.getSFieldRowTemplate().content; // public static final String {object_name} = '{field_list}';
-			sfield = sfield.replace("{object_name}", object_name);
+			String sfieldTemplate = this.ROW_TEMPLATE;
+			sfieldTemplate = sfieldTemplate.replace("{{object_name}}", object_name);
 			
 			String field_list = "";
 			
@@ -114,8 +107,8 @@ public class SFieldsTask extends LeapTask {
 				field_list += field.getName() + ",";
 			}
 			field_list = field_list.substring(0, field_list.length() - 1);
-			sfield = sfield.replace("{field_list}", field_list);
-			output += sfield;
+			sfieldTemplate = sfieldTemplate.replace("{{field_list}}", field_list);
+			output += "\t" + sfieldTemplate + "\n";
 		}
 		return output;
 	}
