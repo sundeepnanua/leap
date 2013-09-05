@@ -13,7 +13,7 @@ public class TriggerTask extends LeapTask {
 			triggerTemplate	= triggerTemplate.replace("{{object_name}}", this.sObjects()[i].getName())
 						.replace("{{class_name}}", this.sObjects()[i].getName());
 			
-			String classTemplate = this.getClassTemplate().content;
+			String classTemplate = this.getLeapClassTemplate().content;
 			classTemplate	= classTemplate.replace("{{object_name}}", this.sObjects()[i].getName())
 						.replace("{{class_name}}", this.sObjects()[i].getName());
 			
