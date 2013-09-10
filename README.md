@@ -19,18 +19,17 @@ From the command line of any Salesforce development environment:
 
 <h2>List of Leap Tasks</h2>
 <ul>
-	<li>gensfields: Generates a class of static fields for all SObjects</li>
-	<li>gentrigger: Generates trigger class(es) for all SObject</li>
-	<li>gentriggerhandler: Generate trigger handler class(es)</li>
-	<li>genwrapper: Generates wrapper class(es)</li>
+	<li>leapsfields: Generates a class of static fields for all SObjects</li>
+	<li>leaptriggers: Generates triggers and Apex trigger handler class(es) for SObjects</li>
+	<li>leapwrappers: Generates wrapper class(es) (in development)</li>
 </ul>
 
 <h2>Getting started</h2>
 <ul>
-	<li>Download and copy ant-leap.jar into the local Ant library folder (on a Mac this is located at /usr/share/ant/lib).</li>
-	<li>(TODO: Copy WSC jar dependencies to local folder)
+	<li>Download and copy bin/ant-leap.jar into the local Ant library folder (on a Mac this is located at /usr/share/ant/lib).</li>
 	<li>Create build.properties and build.xml files within the root of any Salesforce development project (see example templates below).</li>
 	<li>Enter Salesforce development credentials into build.properties.
+	<li>To test, type "ant leapsfields" to run the leap task that builds a class of a field names.
 </ul>
 
 <h2>Example build.properties</h2>
