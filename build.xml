@@ -16,9 +16,17 @@
         </sequential>
     </macrodef>
 
-    <target name="gensfields">
-      <leap:gensfields username="${sf.dev.username}" password="${sf.dev.password}" token="${sf.dev.token}" serverurl="${sf.dev.url}" limit="10" />
-    </target>
+	<target name="leapsfields">
+		<leap:leapsfields username="${sf.dev.username}" password="${sf.dev.password}" token="${sf.dev.token}" serverurl="${sf.dev.url}" limit="10" />
+	</target>
+	
+	<target name="leaptriggers">
+		<leap:leaptriggers username="${sf.dev.username}" password="${sf.dev.password}" token="${sf.dev.token}" serverurl="${sf.dev.url}" />
+	</target>
+	
+	<target name="leapwrappers">
+		<leap:leapwrappers username="${sf.dev.username}" password="${sf.dev.password}" token="${sf.dev.token}" serverurl="${sf.dev.url}" />
+	</target>
 
     <target name="pushdev">
       <sf:deploy username="${sf.dev.username}" password="${sf.dev.password}" token="${sf.dev.token}" serverurl="${sf.dev.url}" deployRoot="src/">

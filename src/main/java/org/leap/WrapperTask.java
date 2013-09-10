@@ -5,6 +5,6 @@ package org.leap;
  */
 public class WrapperTask extends LeapTask {
 	public void execute() {
-		
+		System.out.println("Not yet implemented. Try leapsfields or leaptriggers for now.");
 	}
 }

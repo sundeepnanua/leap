@@ -8,3 +8,7 @@ src/classes/
 src/test/classes/
 .env
 *.launch
+*.cls
+*.cls-meta.xml
+*.trigger
+*.trigger-meta.xml

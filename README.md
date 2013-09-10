@@ -64,5 +64,17 @@ From the command line of any Salesforce development environment:
 	&lt;target name="leapTaskName"&gt;
 		&lt;leap:leapTaskName username="${sf.dev.username}" password="${sf.dev.password}" serverurl="${sf.dev.url}" /&gt;
 	&lt;/target&gt;
+
+	&lt;target name="leapsfields"&gt;
+		&lt;leap:leapsfields username="${sf.dev.username}" password="${sf.dev.password}" token="${sf.dev.token}" serverurl="${sf.dev.url}" /&gt;
+	&lt;/target&gt;
+
+	&lt;target name="leaptriggers"&gt;
+		&lt;leap:leaptriggers username="${sf.dev.username}" password="${sf.dev.password}" token="${sf.dev.token}" serverurl="${sf.dev.url}" /&gt;
+	&lt;/target&gt;
+
+	&lt;target name="leapwrappers"&gt;
+		&lt;leap:leapwrappers username="${sf.dev.username}" password="${sf.dev.password}" token="${sf.dev.token}" serverurl="${sf.dev.url}" /&gt;
+	&lt;/target&gt;
 &lt;/project&gt;
 </pre>

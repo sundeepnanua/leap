@@ -1,14 +1,22 @@
 package org.leap;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
 public class TriggerTask extends LeapTask {
 	private String trigger_url = "https://api.github.com/repos/cubiccompass/leap/contents/templates/src/triggers/TriggerTemplate.trigger";
 	private String meta_trigger_url = "https://api.github.com/repos/cubiccompass/leap/contents/templates/src/triggers/TriggerTemplate.trigger-meta.xml";
 	
 	private String class_url = "https://api.github.com/repos/cubiccompass/leap/contents/templates/src/classes/TriggerHandlerTemplate.cls";
 	private String meta_class_url = "https://api.github.com/repos/cubiccompass/leap/contents/templates/src/classes/TriggerHandlerTemplate.cls-meta.xml";	
-		
+	
 	public void execute() {
 		for (int i = 0; i < this.sObjects().length; i++) {
+			if( !sObjects()[i].getTriggerable() ){
+				continue;
+			}
+			
 			String triggerTemplate = this.getLeapTriggerTemplate().content;
 			triggerTemplate	= triggerTemplate.replace("{{object_name}}", this.sObjects()[i].getName())
 						.replace("{{class_name}}", this.sObjects()[i].getName());
@@ -16,10 +24,34 @@ public class TriggerTask extends LeapTask {
 			String classTemplate = this.getLeapClassTemplate().content;
 			classTemplate	= classTemplate.replace("{{object_name}}", this.sObjects()[i].getName())
 						.replace("{{class_name}}", this.sObjects()[i].getName());
-			
-			System.out.println(triggerTemplate);
-			System.out.println(classTemplate);
-			// TODO: Write content to file system. Check if this will overwrite.
+						
+			PrintWriter writer = null;
+			try {
+				//TODO: Check if these will overwrite
+				writer = new PrintWriter(this.getProjectRoot() + "triggers/" + this.sObjects()[i].getName() + ".trigger", "UTF-8");
+				writer.write( triggerTemplate );
+				writer.close();
+				System.out.println("Created " + this.getProjectRoot() + "triggers/" + this.sObjects()[i].getName() + ".trigger");
+				
+				writer = new PrintWriter(this.getProjectRoot() + "triggers/" + this.sObjects()[i].getName() + ".trigger-meta.xml", "UTF-8");
+				writer.write( this.getLeapMetaTriggerTemplate().content );
+				writer.close();
+				System.out.println("Created " + this.getProjectRoot() + "triggers/" + this.sObjects()[i].getName() + ".trigger-meta.xml");
+				
+				writer = new PrintWriter(this.getProjectRoot() + "classes/" + this.sObjects()[i].getName() + "TriggerHandler.cls", "UTF-8");
+				writer.write( classTemplate );
+				writer.close();
+				System.out.println("Created " + this.getProjectRoot() + "classes/" + this.sObjects()[i].getName() + "TriggerHandler.cls");
+				
+				writer = new PrintWriter(this.getProjectRoot() + "classes/" + this.sObjects()[i].getName() + "TriggerHandler.cls-meta.xml", "UTF-8");
+				writer.write( this.getLeapMetaClassTemplate().content );
+				writer.close();
+				System.out.println("Created " + this.getProjectRoot() + "classes/" + this.sObjects()[i].getName() + "TriggerHandler.cls-meta.xml");				
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
